@@ -1,2 +1,2 @@
-# springframework
-Spring Framework: This repository is for an example applications built with spring
+# Spring Framework
+This repository is for examples of applications built with spring.
