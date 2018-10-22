@@ -1,6 +1,7 @@
 package org.unndevs.spring5webapp.model;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,9 +19,32 @@ public class Book {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Long id;
-  private String name;
-  private String surname;
+  private String isbn;
+  private String title;
+  private String publisher;
   @ManyToMany
-  @JoinTable(name ="author_book", joinColumns = @JoinColumn(name = "author_id"), inverseJoinColumns = @JoinColumn(name = "book_id"))
+  @JoinTable(name = "author_book", joinColumns = @JoinColumn(name = "book_id"),
+  inverseJoinColumns = @JoinColumn(name = "author_id"))
   private Set<Author> authors = new HashSet<>();
+
+  public static Book of(final String isbn, final String title, final String publisher){
+    Book book = new Book();
+    book.setIsbn(isbn);
+    book.setTitle(title);
+    book.setPublisher(publisher);
+    return book;
+  }
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    Book book = (Book) o;
+
+    return id != null ? id.equals(book.id) : book.id == null;
+  }
+  @Override
+  public int hashCode() {
+    return id != null ? id.hashCode() : 0;
+  }
 }
