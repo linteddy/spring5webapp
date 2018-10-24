@@ -26,7 +26,7 @@ public class DevBootstrap implements ApplicationListener<ContextRefreshedEvent> 
   private void initData() {
     Author eric = Author.of("Dale","Carnegie");
     final Publisher publisher = Publisher.of("Simon & Schuster","New York City, New York, United States" );
-    Book ddd = Book.of("1234","ow to win friends and influence people", publisher);
+    Book ddd = Book.of("1234","How to win friends and influence people", publisher);
     eric.getBooks().add(ddd);
     ddd.getAuthors().add(eric);
 
